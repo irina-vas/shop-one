@@ -13,17 +13,19 @@ img {
   margin: 0 auto;
   width: 80vw; }
 
+.basket__container:hover .basket {
+  position: absolute;
+  top: -50%;
+  right: -11.5%; }
+
 .header {
   position: relative;
   margin-top: 20px; }
   .header .header__logo {
     width: 106px;
-    height: 39px;
     margin: 0 auto;
     display: block; }
   .header .header__basket {
-    width: 23px;
-    height: 14.5px;
     display: flex;
     width: 50px;
     justify-content: space-between;
@@ -33,14 +35,93 @@ img {
   .header .header__basket-image {
     width: 20px; }
   .header .header__basket-goods {
+    font-size: 16px;
+    font-weight: 500;
     width: 20px;
-    height: 20px;
     background-color: #000;
     color: #fff;
-    font-size: 16px;
     text-align: center;
-    line-height: 20px;
-    font-weight: 500; }
+    line-height: 20px; }
+
+.basket {
+  z-index: 10;
+  position: fixed;
+  transition: right 2s linear;
+  right: -28%;
+  top: -10%; }
+
+.busket__wrapper {
+  background-color: #2B2B2B;
+  width: 21vw;
+  height: 850px;
+  position: relative;
+  display: flex;
+  flex-direction: column; }
+  .busket__wrapper .busket__item-header {
+    border-bottom: 1px solid #424242;
+    height: 143px;
+    width: 100%; }
+    .busket__wrapper .busket__item-header .busket__close-icon {
+      width: 20px;
+      position: absolute;
+      top: 5%;
+      left: 80%; }
+  .busket__wrapper .busket__items .basket__item-wrapper {
+    border-bottom: 1px solid #424242; }
+  .busket__wrapper .busket__items .busket__item {
+    width: 80%;
+    margin: 0 auto;
+    padding: 25px 0;
+    display: flex;
+    justify-content: start;
+    align-items: center; }
+    .busket__wrapper .busket__items .busket__item .busket__item-image {
+      width: 83px;
+      height: 83px;
+      overflow: hidden; }
+    .busket__wrapper .busket__items .busket__item .busket__item-description {
+      width: 100%;
+      padding-left: 20px; }
+      .busket__wrapper .busket__items .busket__item .busket__item-description .busket__item-title {
+        font-size: 12px;
+        color: #fff; }
+      .busket__wrapper .busket__items .busket__item .busket__item-description .busket__item-details {
+        display: flex;
+        padding-top: 10px;
+        justify-content: space-between; }
+        .busket__wrapper .busket__items .busket__item .busket__item-description .busket__item-details .busket__item-quantity {
+          font-size: 14px;
+          font-weight: 500;
+          color: #fff;
+          letter-spacing: 0.3em; }
+        .busket__wrapper .busket__items .busket__item .busket__item-description .busket__item-details .busket__item-price {
+          font-size: 16px;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          color: #fff; }
+  .busket__wrapper .busket__items .busket__items-total {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 250px; }
+    .busket__wrapper .busket__items .busket__items-total .busket__items-title, .busket__wrapper .busket__items .busket__items-total .busket__items-price {
+      font-weight: 500; }
+  .busket__wrapper .busket__items .busket__button {
+    margin: 0 auto;
+    width: 260px; }
+    .busket__wrapper .busket__items .busket__button button {
+      font-size: 16px;
+      font-weight: 500;
+      background-color: #2B2B2B;
+      width: 100%;
+      color: #fff;
+      border: 2px solid #fff;
+      display: block;
+      height: 62px; }
 
 .container {
   display: flex;
@@ -49,9 +130,12 @@ img {
   .container .menu__list {
     list-style-type: none; }
     .container .menu__list .menu__item {
-      padding-bottom: 30px; }
-    .container .menu__list .menu__item-active {
-      font-weight: 500; }
+      padding-bottom: 30px;
+      transition: color 1.5s ease;
+      cursor: pointer; }
+    .container .menu__list .menu__item:hover {
+      font-weight: 500;
+      color: #112516; }
   .container .menu__sort {
     margin-top: 50px;
     position: relative; }
@@ -69,6 +153,31 @@ img {
     align-items: center;
     grid-column-gap: 7vw;
     grid-row-gap: 30px; }
+    .container .main__cards .main__card:hover .main__card-hidden {
+      opacity: 1; }
+    .container .main__cards .main__card:hover {
+      box-shadow: 2px 15px 21px 0px rgba(124, 126, 128, 0.27);
+      border-radius: 2px; }
+    .container .main__cards .main__card {
+      position: relative;
+      padding-bottom: 20px;
+      transition: 1s; }
+      .container .main__cards .main__card .main__card-hidden {
+        position: absolute;
+        z-index: 100;
+        top: 66%;
+        background-color: #fff;
+        width: 295px;
+        height: 62px;
+        opacity: 0;
+        transition: 1s ease-in-out; }
+        .container .main__cards .main__card .main__card-hidden .main__card-hidden-images {
+          display: flex;
+          justify-content: space-evenly;
+          padding-top: 8px; }
+          .container .main__cards .main__card .main__card-hidden .main__card-hidden-images figure {
+            width: 40px;
+            height: 40px; }
     .container .main__cards .main__card-product {
       height: 389px;
       width: 292px;
@@ -76,11 +185,14 @@ img {
     .container .main__cards .main__card-headline {
       font-size: 10px;
       color: #a3a3a3;
-      margin-top: 15px;
-      font-weight: 500; }
+      margin-top: 20px;
+      font-weight: 500;
+      padding-right: 10px;
+      padding: 0 10px; }
     .container .main__cards .main__card-description {
       font-size: 16px;
-      margin-top: 2px; }
+      margin-top: 2px;
+      padding: 0 10px; }
     .container .main__cards .main__card-price {
       font-size: 20px;
       font-weight: 500;

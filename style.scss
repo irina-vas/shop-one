@@ -1,3 +1,28 @@
+@mixin darkGrey {
+  background-color: #2B2B2B;
+}
+
+@mixin font16Bold {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@mixin borderBottomGrey {
+  border-bottom: 1px solid #424242; 
+}
+
+@mixin width80 {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@mixin navActive {
+  font-weight: 500;
+  color:rgb(17, 37, 22);
+}
+
+
+
 * {
   margin: 0;
   padding: 0;
@@ -16,20 +41,23 @@ img {
   width: 80vw;
 }
 
+.basket__container:hover .basket {
+  position: absolute;
+  top: -50%;
+  right: -11.5%;
+}
+
 .header {
   position: relative;
   margin-top: 20px;
 
   .header__logo {
     width: 106px;
-    height: 39px;
     margin: 0 auto;
     display: block;
   }
 
   .header__basket {
-    width: 23px;
-    height: 14.5px;
     display: flex;
     width: 50px;
     justify-content: space-between;
@@ -43,14 +71,122 @@ img {
   }
 
   .header__basket-goods {
+    @include font16Bold;
     width: 20px;
-    height: 20px;
     background-color: #000;
     color: #fff;
-    font-size: 16px;
     text-align: center;
     line-height: 20px;
-    font-weight: 500;
+  }
+}
+
+.basket {
+  z-index: 10;
+  position: fixed;
+  transition: right 2s linear;
+  right: -28%;
+  top: -10%;
+}
+
+.busket__wrapper {
+  @include darkGrey;
+  width: 21vw;
+  height: 850px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .busket__item-header {
+    @include borderBottomGrey;
+    height: 143px;
+    width: 100%;
+  
+    .busket__close-icon {
+      width: 20px;
+      position: absolute;
+      top: 5%;
+      left: 80%;
+    }
+  }
+
+  .busket__items {
+    .basket__item-wrapper {
+      @include borderBottomGrey;
+    }
+
+    .busket__item {
+      @include width80;
+      padding: 25px 0;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+
+      .busket__item-image {
+        width: 83px;
+        height: 83px;
+        overflow: hidden;
+      }
+
+      .busket__item-description {
+        width: 100%;
+        padding-left: 20px;
+
+        .busket__item-title {
+          font-size: 12px;
+          color: #fff;
+        }
+
+        .busket__item-details {
+          display: flex;
+          padding-top: 10px;
+          justify-content: space-between;
+                  
+          .busket__item-quantity {
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0.3em;
+          }
+
+          .busket__item-price {
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .busket__items-total {
+      @include width80;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      color: #fff;
+      margin-top: 40px;
+      margin-bottom: 250px;
+
+      .busket__items-title, .busket__items-price {
+        font-weight: 500;
+      }
+    }
+
+    .busket__button {
+      margin: 0 auto;
+      width: 260px;
+
+      button {
+        @include font16Bold;
+        @include darkGrey;
+        width: 100%;
+        color: #fff;
+        border: 2px solid #fff;
+        display: block;
+        height: 62px;
+      }
+
+    }
   }
 }
 
@@ -64,10 +200,12 @@ img {
 
     .menu__item {
       padding-bottom: 30px;
+      transition: color 1.5s ease;
+      cursor: pointer;
     }
 
-    .menu__item-active {
-      font-weight: 500;
+    .menu__item:hover {
+      @include navActive;
     }
   }
 
@@ -93,6 +231,43 @@ img {
     grid-column-gap: 7vw;
     grid-row-gap: 30px;
 
+    .main__card:hover .main__card-hidden {
+      opacity: 1;
+    }
+
+    .main__card:hover {
+      box-shadow: 2px 15px 21px 0px rgba(124, 126, 128, 0.27);
+      border-radius: 2px;
+    }
+
+    .main__card {
+      position: relative;
+      padding-bottom: 20px;
+      transition: 1s;
+
+      .main__card-hidden {
+        position: absolute;
+        z-index: 100;
+        top: 66%;
+        background-color: #fff;
+        width: 295px;
+        height: 62px;
+        opacity: 0;
+        transition: 1s ease-in-out;
+        
+        .main__card-hidden-images {
+          display: flex;
+          justify-content: space-evenly;
+          padding-top: 8px;
+
+          figure {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+
     .main__card-product {
       height: 389px;
       width: 292px;
@@ -102,13 +277,16 @@ img {
     .main__card-headline {
       font-size: 10px;
       color: #a3a3a3;
-      margin-top: 15px;
+      margin-top: 20px;
       font-weight: 500;
+      padding-right: 10px;
+      padding: 0 10px;
     }
 
     .main__card-description {
       font-size: 16px;
       margin-top: 2px;
+      padding: 0 10px;
     }
 
     .main__card-price {
@@ -126,4 +304,5 @@ img {
     }
   }
 }
+
 
